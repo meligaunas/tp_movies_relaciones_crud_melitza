@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('partials/head') %>
+
+<body>
+    <%- include('partials/header') %>
+
+           <main class="">
+            <div class="col-12 col-md-10 mx-auto mt-3">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/movies">Peliculas</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    <%= movie.title %>
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12 col-md-4">
+
+                            </div>
+                            <div class="col-12 col-md-8">
+                                <ul class="list-group list-gropu-flush">
+                                    <li class="list-group-item"><b> Título: </b>
+                                        <%= movie.title %>
+                                    </li>
+                                    <li class="list-group-item"><b> Rating: </b>
+                                        <%= movie.rating %>
+                                    </li>
+                                    <li class="list-group-item"><b> Premios: </b>
+                                        <%= movie.awards %>
+                                    </li>
+                                    <li class="list-group-item"><b> Duración: </b>
+                                        <%= movie.length %>
+                                    </li>
+                                    <li class="list-group-item"><b> Estreno: </b>
+                                        <%= moment(movie.release_date).format('DD/MM/YYYY')%>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+         <%- include('partials/scripts') %>
+    </body>
+
+</html>

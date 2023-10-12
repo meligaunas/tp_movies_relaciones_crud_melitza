@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head') %>
+
+    <body>
+        <%- include('partials/header') %>  
+        <main class="">
+            <div class="col-12 col-md-10 mx-auto mt-3">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Géneros </li>
+                            </ol>
+                        </nav>
+                        <a href="/genres/add" class="btn btn-outline-dark">Agregar género</a>
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">NOMBRE</th>
+                                <th scope="col">RANKING</th>
+                                <th scope="col">ACTIVE</th>
+                                <th scope="col">PELICULAS</th>
+                                <th scope="col">ACCIONES</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% genres.forEach(genre => { %>
+                                <tr>
+                                    <th scope="row"><%= genre.id %></th>
+                                    <td><%= genre.name %></td>
+                                    <td><%= genre.ranking %></td>
+                                    <td>
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" role="switch" <%=genre.active && 'checked' %>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <% if (genre.movies.length) { %>
+                                        <div class="accordion accordion-flush" id="accordionFlushExample">
+                                            <div class="accordion-item">
+                                              <h2 class="accordion-header">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse<%= genre.id %>" aria-expanded="false" aria-controls="flush-collapse<%= genre.id %>">
+                                                   
+                                                        <span><%= genre.movies.length %>Peliculas</span>
+                                                   
+                                                </button>
+                                              </h2>
+                                              <div id="flush-collapse<%= genre.id %>" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                                <div class="accordion-body">
+                                                    <ul>
+                                                        <% genre.movies.forEach(movie => { %>
+                                                            <li><a href="/movies/detail/<% movie.id%>"><%= movie.title %></a></li>
+                                                        <% }) %>
+                                                        
+                                                    </ul>
+                                                </div>
+                                              </div>
+                                            </div>
+                                            
+                                          </div>
+                                          <% }else{ %>
+                                            <span> No se posee peliculas asociadas</span>
+                                        <% } %>
+                                    </td>
+                                    <td>
+                                        <div clas="d-flex gap-2">
+                                            <a href="/genres/detail/<%= genre.id %>" class="btn btn-outline-dark"> <i
+                                                    class="fas fa-eye"></i></a>
+                                            <a href="/genres/edit/<%= genre.id %>" class="btn btn-outline-dark"> <i
+                                                    class="fas fa-edit"></i></a>
+                                            <a href="/genres/remove/<%= genre.id %>" class="btn btn-outline-dark"> <i
+                                                    class="fas fa-trash"></i></a>
+                                        </div>
+                                        <% }) %>
+
+                                    </td>
+
+                                </tr>   
+                      
+                            </tbody>        
+                </div>
+        </main>
+
+<%- include('partials/scripts') %>
+        
+    </body>
+
+</html>

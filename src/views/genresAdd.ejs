@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('partials/head') %>    
+<body>
+    <%- include('partials/header') %>
+      <main class="detalle__main">
+        <div class="card">
+            <div class="col-12 col-md-8 col-lg-8 mx-auto mt-5">
+                <div class="card">
+                  <div class="card-header d-flex justify-content-between">
+                  Agregar Género
+                  </div>
+    <section class="car-body">
+        <form action="/genres/create" method="POST" class="row">
+            <div class="mb-3 col-12 col-md-6">
+                <label for="title" class="form-label">Nombre </label>
+                <input type="text" class="form-control" name="title" id="title" required>
+            </div>
+            <div class="mb-3 col-12 col-md-6">
+                <label for="ranking" class="form-label">Ranking </label>
+                 <input type="number" class="form-control" name="ranking" id="" required> 
+          </div>
+       
+            <div class="mb-3 col-12 col-md-6">
+            <label for="genre_id">Género </label>
+            <select name="genre_id" class="form-label" id="genre_id" required>
+                    <option value="" class="form-control" disabled selected>- select genre - </option>
+                    <% genres.forEach(genre => { %>
+                    <option value="<%= genre.id %>"><%= genre.name %></option>
+                    <% }) %>
+                </select>
+            </div>
+
+            <div class="mb-3 col-12">
+            <label class="form-label">Generos</label>
+            <hr>
+                            <div class="row">
+                                <% genres.forEach(genre => { %>
+                                 <div class="col-12 col-md-3 col-lg-2"> 
+                                    <div class="form-check">
+                                     <input name="genres" class="form-check-input" type="checkbox" value="<%= genre.id %>" id="genre<%= genre.id %>">
+                                    <label class="form-check-label" for="genre<%= genre.id %>"> 
+                                     </label>
+                                 </div>
+                                 </div>
+                                    <% }) %>
+                                </div>
+                                </div>
+        
+     </section>
+        <div class="mb-3 ">
+            <br>
+            <p> <button class="botonAgregar" type="submit">Agregar</button>
+            
+            <a  class="botonVolver" href="/genres">Listado de Géneros</a></p>
+        </div>
+        </form>
+        
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('partials/head') %>    
+<body>
+    <%- include('partials/header') %>
+      <main class="detalle__main">
+        <div class="card">
+            <div class="col-12 col-md-8 col-lg-8 mx-auto mt-5">
+                <div class="card">
+                  <div class="card-header d-flex justify-content-between">
+                  Agregar Película
+                  </div>
+    <section class="car-body">
+        <form action="/movies/create" method="POST" class="row">
+            <div class="mb-3 col-12 col-md-6">
+                <label for="title" class="form-label">Titulo </label>
+                <input type="text" class="form-control" name="title" id="title" required>
+            </div>
+            <div class="mb-3 col-12 col-md-6">
+                <label for="rating" class="form-label">Rating </label>
+                 <input type="number" class="form-control" name="rating" id="" required> 
+          </div>
+          <div class="mb-3 col-12 col-md-6">
+            <label for="awards">Premios </label>
+            <input type="number" class="form-control" name="awards" id="" required>
+           </div>
+           <div class="mb-3 col-12 col-md-6">
+            <label for="release_date">Fecha de estreno </label>
+            <input type="date" class="form-control" name="release_date" id="" required>
+        </div>
+        <div class="mb-3 col-12 col-md-6">
+            <label for="length">Duración </label>            
+            <input type="number" class="form-control" name="length" id="" required>
+        </div>
+            <div class="mb-3 col-12 col-md-6">
+            <label for="genre_id">Género </label>
+            <select name="genre_id" class="form-label" id="genre_id" required>
+                    <option value="" class="form-control" disabled selected>- select genre - </option>
+                    <% genres.forEach(genre => { %>
+                    <option value="<%= genre.id %>"><%= genre.name %></option>
+                    <% }) %>
+                </select>
+            </div>
+
+            <div class="mb-3 col-12">
+            <label class="form-label">Actores</label>
+            <hr>
+                            <div class="row">
+                                <% actors.forEach(actor => { %>
+                                 <div class="col-12 col-md-3 col-lg-2"> 
+                                    <div class="form-check">
+                                     <input name="actors" class="form-check-input" type="checkbox" value="<%= actor.id %>" id="actor<%= actor.id %>">
+                                    <label class="form-check-label" for="actor<%= actor.id %>"> <%= actor.first_name %>  <%= actor.last_name %>
+                                     </label>
+                                 </div>
+                                 </div>
+                                    <% }) %>
+                                </div>
+                                </div>
+        
+     </section>
+        <div class="mb-3 ">
+            <br>
+            <p> <button class="botonAgregar" type="submit">Agregar</button>
+            
+            <a  class="botonVolver" href="/movies">Listado de Películas</a></p>
+        </div>
+        </form>
+        
+</body>
+
+</html>
